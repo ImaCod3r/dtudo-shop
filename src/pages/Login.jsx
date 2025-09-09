@@ -1,13 +1,27 @@
 import { useState } from "react";
+import { account } from "../lib/appwrite.js";
 import "../styles/Login.css";
 
-export default function LoginForm({ onLogin }) {
+export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const onLogin = (email, password) => {
+    // Simulate authentication process
+    account.createEmailPasswordSession({ email, password })
+      .then(response => {
+        console.log("Login successful:", response);
+        window.location.href = "/admin/new"; // Redirect to admin page on success
+      })
+      .catch(error => {
+        console.error("Login failed:", error);
+        alert("Falha no login. Verifique suas credenciais.");
+      });
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLogin(email, password); // chama função recebida por props
+    onLogin(email, password); 
   };
 
   return (
