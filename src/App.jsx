@@ -14,7 +14,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/admin/new" element={
+            <Route path="/admin/" element={
               <ProtectedRoute>
                 <Admin />
               </ProtectedRoute>
