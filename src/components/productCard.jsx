@@ -1,10 +1,14 @@
 import { formatPriceAOA } from "../utils";
 
-const ProductCard = ({ name, image, price }) => {
+const ProductCard = ({ name, image_url, price, slug }) => {
     return (
-        <div className="product-card">
+        <div className="product-card" key={slug}>
             <div className="image-wrapper">
-                <img src={image} alt={`${name} image`} />
+                <img
+                    src={image_url || "https://via.placeholder.com/1200x800?text=No+Image"}
+                    alt={name ? `Imagem de ${name}` : "Imagem do produto"}
+                    style={{ maxWidth: "100%", height: "auto" }}
+                />
             </div>
 
             <div className="info">

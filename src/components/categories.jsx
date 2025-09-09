@@ -1,17 +1,13 @@
+import { categories } from "../constants";
+
 const Categories = () => {
-    const categories = [
-        "Todos",
-        "Escritório",
-        "Acessórios",
-        "Electrônicos"
-    ]
 
     return (
         <>
             <h2 className="subtitle">Categorias</h2>
             <div className="categories">
-                {categories.map((category) => (
-                    <button>{category}</button>
+                {categories.map((category, idx) => (
+                    <button key={idx}>{category}</button>
                 ))}
             </div>
         </>
