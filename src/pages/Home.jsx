@@ -9,14 +9,25 @@ function Home() {
             image: "https://b2bleonorashop.vtexassets.com/arquivos/ids/160885/headset-gamer-p3-line-letron-74429---1.png?v=637991896972170000"
         }
     ]
-    
+
     return (
         <>
             <Categories />
-            <main className="products-grid">
-                {MockedProducts.map((item, idx) => (
-                    <ProductCard name={item.name} id={idx} price={item.price} image={item.image} />
-                ))}
+            <main>
+                <section className="products-grid">
+                    {MockedProducts.map((item, idx) => (
+                        <ProductCard name={item.name} id={idx} price={item.price} image={item.image} />
+                    ))}
+                </section>
+
+                <section>
+                    <h2>Mais Vendidos</h2>
+                    <div className="products-grid">
+                        {MockedProducts.map((item, idx) => (
+                            <ProductCard name={item.name} id={idx} price={item.price} image={item.image} />
+                        ))}
+                    </div>
+                </section>
             </main>
         </>
     )

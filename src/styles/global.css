@@ -61,12 +61,14 @@ nav ul li a {
 }
 
 .categories button {
+  display: inline-block;
   background-color: #fff;
   border: 1px solid var(--primary-color);
   color: var(--primary-color);
-  border-radius: 12px;
+  border-radius: 15px;
 
-  padding: 10px;
+  padding: 5px 0;
+  max-width: 100px;
 }
 
 .products-grid {
@@ -76,6 +78,8 @@ nav ul li a {
 .product-card { 
   width: 150px;
   height: 200px;
+  padding: 1rem;
+  border-radius: 16px;
 
   display: flex;
   flex-direction: column;
@@ -83,6 +87,8 @@ nav ul li a {
 
   background: #fff;
   cursor: pointer;
+  box-shadow: 0 4px 16px rgba(29, 92, 238, 0.12);
+  transition: box-shadow 0.3s ease;
 }
 
 .product-card .image-wrapper {

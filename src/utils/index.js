@@ -3,4 +3,12 @@ function createSlug(string) {
     return formatedString;
 }
 
-export { createSlug }
+function formatPriceAOA(valor) {
+    return valor.toLocaleString('pt-AO', {
+        style: 'currency',
+        currency: 'AOA',
+        minimumFractionDigits: 2
+    });
+}
+
+export { createSlug, formatPriceAOA };

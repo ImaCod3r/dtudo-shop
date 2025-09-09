@@ -1,3 +1,5 @@
+import { formatPriceAOA } from "../utils";
+
 const ProductCard = ({ name, image, price }) => {
     return (
         <div className="product-card">
@@ -7,7 +9,7 @@ const ProductCard = ({ name, image, price }) => {
 
             <div className="info">
                 <h3>{name}</h3>
-                <p>{price}Kz</p>
+                <p>{formatPriceAOA(price)}</p>
             </div>
         </div>
     )
