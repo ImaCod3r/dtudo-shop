@@ -25,10 +25,10 @@ a {
   font-family: var(--secondary-font);
 }
 
-.container {
+/* .container {
   width: 80%;
   margin: 32px auto;
-}
+} */
 
 header {
   background-color: var(--primary-color);

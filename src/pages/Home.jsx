@@ -6,6 +6,7 @@ import "../styles/Home.css";
 
 function Home() {
     const [products, setProducts] = useState([])
+    const [category, setCategory] = useState("Todos")
     const handleFetchProducts = async () => {
         try {
             const data = await listProducts();
@@ -15,9 +16,10 @@ function Home() {
         }
     }
 
-    useEffect(()=> {
+    useEffect(() => {
         handleFetchProducts();
     }, [])
+
 
     return (
         <>

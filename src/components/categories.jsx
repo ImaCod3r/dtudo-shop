@@ -1,4 +1,5 @@
 import { categories } from "../constants";
+import { useState } from "react";
 
 const Categories = () => {
 

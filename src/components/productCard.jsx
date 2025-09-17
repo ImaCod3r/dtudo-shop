@@ -29,7 +29,7 @@ const ProductCard = ({ name, image_url, price, slug }) => {
                 <p>{formatPriceAOA(price)}</p>
             </div>
 
-            <button onClick={() => handleAddToCart()}><img src={AddShoppingCart} /></button>
+            <button onClick={() => handleAddToCart()} className="add-to-cart"><img src={AddShoppingCart} /></button>
         </div>
     )
 }
