@@ -8,7 +8,7 @@ const CustomHeader = () => {
             <nav>
                 <ul>
                     <li>
-                        <a href="">Sobre nós</a>
+                        <a href="/cart">Carrinho</a>
                     </li>
                     <li>
                         <a href="">Contactos</a>

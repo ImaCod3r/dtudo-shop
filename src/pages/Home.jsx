@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Categories from "../components/categories.jsx";
 import ProductCard from "../components/productCard.jsx";
 import { listProducts } from "../lib/appwrite.js";
+import "../styles/Home.css";
 
 function Home() {
     const [products, setProducts] = useState([])
