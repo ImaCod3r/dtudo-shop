@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-import { listItems, deleteItem } from "../storage";
+import { useCart } from "../hooks/useCart";
 import { formatPriceAOA } from "../utils";
 import "../styles/Cart.css";
 
 export default function Cart() {
-    const [items, setItems] = useState(null);
-    const [total, setTotal] = useState(0);
+    const { cart, increase, decrease, remove, clear } = useCart();
 
     const calculateTotal = (items) => {
         let result = 0;
@@ -15,31 +14,17 @@ export default function Cart() {
         setTotal(result);
     }
 
-    const handleDeleteItem = (idx) => {
-        deleteItem(idx);
-    }
-
-    useEffect(() => {
-        const data = listItems();
-        setItems(data);
-    }, []);
-
-    useEffect(() => {
-        if(items) {
-            calculateTotal(items);
-        }
-    }, [items]);
-
+    console.log(cart)
     return (
         <main>
             <div className="total">
                 <span>Total</span>
-                <h2>{formatPriceAOA(total)}</h2>
+                {/* <h2>{formatPriceAOA(total || 0)}</h2> */}
 
                 <button>Finalizar Compra</button>
             </div>
             <div className="products-list">
-                {items && items.map((item, idx) => (
+                {cart && cart.map((item, idx) => (
                     <div className="product-item" key={idx}>
                         <div className="info-wrapper">
                             <div className="image-wrapper">
@@ -50,14 +35,14 @@ export default function Cart() {
                                 <p>{formatPriceAOA(item.price)}</p>
 
                                 <div className="controls">
-                                    <button>+</button>
-                                    <span>0</span>
-                                    <button>-</button>
+                                    <button onClick={() => increase(item)}>+</button>
+                                    <span>{item.quantity}</span>
+                                    <button onClick={() => decrease(item)}>-</button>
                                 </div>
                             </div>
                         </div>
 
-                        <button onClick={handleDeleteItem(idx)}>x</button>
+                        <button onClick={() => remove(item)}>x</button>
                     </div>
                 ))}
             </div>

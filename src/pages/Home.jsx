@@ -18,8 +18,7 @@ function Home() {
 
     useEffect(() => {
         handleFetchProducts();
-    }, [])
-
+    }, []);
 
     return (
         <>
@@ -27,15 +26,15 @@ function Home() {
             <main>
                 <section className="products-grid">
                     {products.map((item) => (
-                        <ProductCard name={item.name} key={item.slug} price={item.price} image_url={item.image_url} />
+                        <ProductCard name={item.name} key={item.$id} id={item.$id} slug={item.slug} price={item.price} image_url={item.image_url} />
                     ))}
                 </section>
 
                 <section>
-                    <h2>Mais Vendidos</h2>
+                    <h2>Populares</h2>
                     <div className="products-grid">
-                        {products.map((item, idx) => (
-                            <ProductCard name={item.name} key={item.slug} price={item.price} image_url={item.image_url} />
+                        {products.map((item) => (
+                            <ProductCard name={item.name} key={item.$id} id={item.$id} slug={item.slug} price={item.price} image_url={item.image_url} />
                         ))}
                     </div>
                 </section>

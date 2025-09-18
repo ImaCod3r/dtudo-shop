@@ -1,24 +1,24 @@
 import { formatPriceAOA } from "../utils";
 import AddShoppingCart from "../assets/add-shopping-cart.svg";
-
-import { addToCart } from "../storage";
+import { useCart } from "../hooks/useCart.js";
 
 const ProductCard = ({ id, name, image_url, price, slug }) => {
+    const { add } = useCart();
+
+    console.log(id)
    const handleAddToCart = () => {
     const data = {
-        name: name,
-        price: price,
-        image_url: image_url
+        id,
+        name,
+        price,
+        image_url,
+        slug
     };
 
-    const success = addToCart(data);
-    
-    if (success) {
-        console.log('Item adicionado ao carrinho:', data.name);
-    }
+    add(data);
 };
     return (
-        <div className="product-card" key={slug}>
+        <div className="product-card" key={id}>
             <div className="image-wrapper">
                 <img
                     src={image_url || "https://via.placeholder.com/1200x800?text=No+Image"}

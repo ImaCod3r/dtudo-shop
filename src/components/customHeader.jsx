@@ -1,15 +1,7 @@
-import { useState, useEffect } from "react";
-import { listItems } from "../storage/";
+import { useCart } from "../hooks/useCart.js";
 
 const CustomHeader = () => {
-    const [cartQuantity, setCartQuantity] = useState(0);
-
-    useEffect(() => {
-        const data = listItems();
-        if(!data) return;
-        setCartQuantity(data.length);
-    }, [cartQuantity]);
-
+    const { itemCount } = useCart();
     return (
         <header>
             <a href="/" className="logo">
@@ -20,7 +12,7 @@ const CustomHeader = () => {
                 <ul>
                     <li>
                         <a href="/cart" style={{ display: "flex", alignItems: "center" }}>
-                            <span>{cartQuantity}</span>
+                            <span>{itemCount}</span>
                             <img src={new URL("../assets/shopping-cart-icon.svg", import.meta.url)} alt="Shopping cart" style={{ width: 30 }} />
                         </a>
                     </li>

@@ -14,7 +14,8 @@ function Admin() {
         image_url: '',
         category: '',
         price: '',
-        description: ''
+        description: '',
+        slug: ''
     });
 
     const fetchProducts = async () => {
@@ -39,7 +40,7 @@ function Admin() {
 
     useEffect(() => {
         fetchProducts();
-    }, [])
+    }, []);
 
     return (
         <>
