@@ -28,6 +28,12 @@ export default function Cart() {
 
     return (
         <main>
+            <div className="total">
+                <span>Total</span>
+                <h2>{formatPriceAOA(total)}</h2>
+
+                <button>Finalizar Compra</button>
+            </div>
             <div className="products-list">
                 {items && items.map((item, idx) => (
                     <div className="product-item" key={idx}>
@@ -50,11 +56,6 @@ export default function Cart() {
                         <button>x</button>
                     </div>
                 ))}
-            </div>
-
-            <div className="total">
-                <h2>Total</h2>
-                <span>{total}</span>
             </div>
         </main>
     )

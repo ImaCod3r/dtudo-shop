@@ -68,8 +68,13 @@ main {
 }
 
 .total {
-    margin-top: 32px;
+    margin: 32px 0;
     width: 100%;
     border: 1px solid #c6c6c6;
-    padding: 10px;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.total button {
+    margin-top: 15px;
 }
