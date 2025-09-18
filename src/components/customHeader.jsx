@@ -1,17 +1,27 @@
+import { useState, useEffect } from "react";
+import { listItems } from "../storage/";
+
 const CustomHeader = () => {
+    const [cartQuantity, setCartQuantity] = useState(0);
+
+    useEffect(() => {
+        const data = listItems();
+        setCartQuantity(data.length);
+    }, [cartQuantity]);
+
     return (
         <header>
             <a href="/" className="logo">
-                <img src={new URL("../assets/logo.png", import.meta.url)} alt="logo" style={{ width: 100 }}/>
+                <img src={new URL("../assets/logo.png", import.meta.url)} alt="logo" style={{ width: 100 }} />
             </a>
 
             <nav>
                 <ul>
                     <li>
-                        <a href="/cart">Carrinho</a>
-                    </li>
-                    <li>
-                        <a href="">Contactos</a>
+                        <a href="/cart" style={{ display: "flex", alignItems: "center" }}>
+                            <span>{cartQuantity}</span>
+                            <img src={new URL("../assets/shopping-cart-icon.svg", import.meta.url)} alt="Shopping cart" style={{ width: 30 }} />
+                        </a>
                     </li>
                 </ul>
             </nav>
