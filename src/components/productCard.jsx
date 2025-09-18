@@ -3,17 +3,20 @@ import AddShoppingCart from "../assets/add-shopping-cart.svg";
 
 import { addToCart } from "../storage";
 
-const ProductCard = ({ name, image_url, price, slug }) => {
-    const handleAddToCart = () => {
-        const data = {
-            name,
-            price,
-            image_url
-        }
+const ProductCard = ({ id, name, image_url, price, slug }) => {
+   const handleAddToCart = () => {
+    const data = {
+        name: name,
+        price: price,
+        image_url: image_url
+    };
 
-        addToCart(data);
+    const success = addToCart(data);
+    
+    if (success) {
+        console.log('Item adicionado ao carrinho:', data.name);
     }
-
+};
     return (
         <div className="product-card" key={slug}>
             <div className="image-wrapper">

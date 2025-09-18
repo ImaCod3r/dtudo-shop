@@ -26,7 +26,7 @@ function Home() {
             <Categories />
             <main>
                 <section className="products-grid">
-                    {products.map((item, idx) => (
+                    {products.map((item) => (
                         <ProductCard name={item.name} key={item.slug} price={item.price} image_url={item.image_url} />
                     ))}
                 </section>

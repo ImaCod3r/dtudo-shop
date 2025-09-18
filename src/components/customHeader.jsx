@@ -6,6 +6,7 @@ const CustomHeader = () => {
 
     useEffect(() => {
         const data = listItems();
+        if(!data) return;
         setCartQuantity(data.length);
     }, [cartQuantity]);
 

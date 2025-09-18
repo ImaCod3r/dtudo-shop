@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { listItems } from "../storage";
+import { listItems, deleteItem } from "../storage";
 import { formatPriceAOA } from "../utils";
 import "../styles/Cart.css";
 
@@ -13,6 +13,10 @@ export default function Cart() {
             result += item.price;
         });
         setTotal(result);
+    }
+
+    const handleDeleteItem = (idx) => {
+        deleteItem(idx);
     }
 
     useEffect(() => {
@@ -53,7 +57,7 @@ export default function Cart() {
                             </div>
                         </div>
 
-                        <button>x</button>
+                        <button onClick={handleDeleteItem(idx)}>x</button>
                     </div>
                 ))}
             </div>
