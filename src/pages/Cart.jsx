@@ -5,21 +5,25 @@ import "../styles/Cart.css";
 
 export default function Cart() {
     const { cart, increase, decrease, remove, clear } = useCart();
+    const [total, setTotal] = useState(0);
 
     const calculateTotal = (items) => {
         let result = 0;
-        items.map((item) => {
-            result += item.price;
+        items.forEach((item) => {
+            result += item.price * item.quantity;
         });
         setTotal(result);
     }
 
-    console.log(cart)
+    useEffect(()=> {
+        calculateTotal(cart);   
+    })
+
     return (
         <main>
             <div className="total">
                 <span>Total</span>
-                {/* <h2>{formatPriceAOA(total || 0)}</h2> */}
+                <h2>{formatPriceAOA(total)}</h2>
 
                 <button>Finalizar Compra</button>
             </div>

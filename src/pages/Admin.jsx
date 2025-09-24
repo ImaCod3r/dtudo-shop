@@ -44,7 +44,9 @@ function Admin() {
 
     return (
         <>
-            <button onClick={() => setModalState(true)}>Novo Produto</button>
+            <div className="btn-wrapper">
+                <button onClick={() => setModalState(true)} className="new-product">Novo Produto</button>
+            </div>
             <Modal isOpen={ModalState} onClose={() => setModalState(false)}>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
