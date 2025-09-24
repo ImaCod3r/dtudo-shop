@@ -1,10 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import CustomHeader from "./components/customHeader.jsx"
+import CustomHeader from "./components/customHeader.jsx";
 import Home from "./pages/Home.jsx";
 import Cart from "./pages/Cart.jsx";
 import ProtectedRoute from "./auth/ProtectedRoute.jsx";
 import Admin from "./pages/Admin.jsx";
 import Login from "./pages/Login.jsx";
+import Product from "./pages/Product.jsx";
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
               </ProtectedRoute>
             } />
             <Route path="/login" element={<Login />} />
+            <Route path="/produto/:slug" element={<Product />} />
           </Routes>
         </BrowserRouter>
       </div>

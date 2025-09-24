@@ -5,20 +5,19 @@ import { useCart } from "../hooks/useCart.js";
 const ProductCard = ({ id, name, image_url, price, slug }) => {
     const { add } = useCart();
 
-    console.log(id)
-   const handleAddToCart = () => {
-    const data = {
-        id,
-        name,
-        price,
-        image_url,
-        slug
-    };
+    const handleAddToCart = () => {
+        const data = {
+            id,
+            name,
+            price,
+            image_url,
+            slug
+        };
 
-    add(data);
-};
+        add(data);
+    };
     return (
-        <div className="product-card" key={id}>
+        <div className="product-card" key={id} onClick={() => window.location.href = `/produto/${slug}`}>
             <div className="image-wrapper">
                 <img
                     src={image_url || "https://via.placeholder.com/1200x800?text=No+Image"}

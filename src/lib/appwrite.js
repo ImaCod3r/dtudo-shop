@@ -1,4 +1,4 @@
-import { Client, Account, Storage, ID, TablesDB } from "appwrite";
+import { Client, Account, Storage, ID, TablesDB, Query } from "appwrite";
 import { createSlug } from "../utils";
 
 const endpoint = import.meta.env.VITE_APPWRITE_ENDPOINT;
@@ -36,4 +36,9 @@ const listProducts = async () => {
   return response.rows || [];
 }
 
-export { account, handleProductSaving, listProducts };
+const getProductBySlug = async (slug) => {
+  const response = await table.listRows({databaseId: database_id, tableId: table_id, queries: [Query.equal("slug", slug)] })
+  return response.rows || [];
+}
+
+export { account, handleProductSaving, listProducts, getProductBySlug };
