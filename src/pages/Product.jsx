@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getProductBySlug } from "../lib/appwrite";
 import { formatPriceAOA } from "../utils";
 import { useCart } from "../hooks/useCart";
 
+// Components
+import Back from "../components/backButton.jsx";
 import CustomFooter from "../components/customFooter.jsx";
 
-import { IoIosArrowBack } from "react-icons/io";
 import "../styles/Product.css";
 
 export default function Product() {
     const { slug } = useParams();
     const [product, setProduct] = useState(null);
-    const navigate = useNavigate();
     const { add } = useCart();
 
     const handleFetchProduct = async () => {
@@ -31,9 +31,7 @@ export default function Product() {
     return (
         <>
             <div className="product-container">
-                <button className="back" onClick={() => navigate(-1)}>
-                    <IoIosArrowBack size={30} color="#000" />
-                </button>
+                <Back />
                 {product && (
                     <div className="product">
                         <img src={product.image_url} alt={`Imagem ${product.name}`} />

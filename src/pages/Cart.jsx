@@ -3,6 +3,8 @@ import { useCart } from "../hooks/useCart";
 import { formatPriceAOA } from "../utils";
 import "../styles/Cart.css";
 
+import Back from "../components/backButton.jsx";
+
 export default function Cart() {
     const { cart, increase, decrease, remove, clear } = useCart();
     const [total, setTotal] = useState(0);
@@ -21,6 +23,10 @@ export default function Cart() {
 
     return (
         <main>
+            <div className="cart-header">
+                <Back />
+                <h1>Carrinho de Compras</h1>
+            </div>
             <div className="total">
                 <span>Total</span>
                 <h2>{formatPriceAOA(total)}</h2>

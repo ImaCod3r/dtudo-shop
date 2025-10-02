@@ -3,6 +3,26 @@ main {
     margin: 32px auto;
 }
 
+.cart-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 32px;
+
+    h1 {
+        font-size: 18px;
+    }
+
+    .back {
+        position: absolute;
+        left: 10%;
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+    }
+}
+
 .products-list {
     display: flex;
     flex-direction: column;

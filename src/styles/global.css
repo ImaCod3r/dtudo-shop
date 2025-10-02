@@ -14,6 +14,17 @@
   --gray: #f0f0f5;
 }
 
+.back {
+    width: 20px;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+}
+
+.back:hover {
+    background: none;
+}
+
 h1, h2, h3 {
   font-family: var(--primary-font);
 }

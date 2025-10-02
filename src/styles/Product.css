@@ -37,17 +37,6 @@
     }
 }
 
-.back {
-    width: 20px;
-    padding: 0;
-    background-color: transparent;
-    border: none;
-}
-
-.back:hover {
-    background: none;
-}
-
 @media screen and (width <= 900px) {
     .product {
         flex-direction: column;
