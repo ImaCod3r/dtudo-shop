@@ -41,7 +41,7 @@
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(29, 92, 238, 0.12);
   transition: box-shadow 0.3s ease;
-  margin: 0 auto; /* centraliza o card */
+  margin: 0 auto;
 }
 
 .product-card .image-wrapper {
@@ -51,8 +51,6 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 14px;
-  background: #f5f6fa;
-  border-radius: 12px;
 }
 
 .product-card img {
@@ -79,4 +77,10 @@
 
 .product-card .info {
   width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+  .products-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
 }

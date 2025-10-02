@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Categories from "../components/categories.jsx";
 import ProductCard from "../components/productCard.jsx";
 import CustomHeader from "../components/customHeader.jsx";
+import CustomFooter from "../components/customFooter.jsx";
 
 import { listProducts } from "../lib/appwrite.js";
 import "../styles/Home.css";
@@ -44,6 +45,7 @@ function Home() {
                     </div>
                 </section>
             </main>
+            <CustomFooter />
         </>
     )
 }
