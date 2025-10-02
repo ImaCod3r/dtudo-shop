@@ -11,7 +11,7 @@ const CustomHeader = () => {
             <nav>
                 <ul>
                     <li>
-                        <a href="/cart" style={{ display: "flex", alignItems: "center" }}>
+                        <a href="/cart" className="cart-link">
                             <span>{itemCount}</span>
                             <img src={new URL("../assets/shopping-cart-icon.svg", import.meta.url)} alt="Shopping cart" style={{ width: 30 }} />
                         </a>

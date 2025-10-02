@@ -31,7 +31,6 @@ const ProductCard = ({ id, name, image_url, price, slug }) => {
                 <p>{formatPriceAOA(price)}</p>
             </div>
 
-            <button onClick={() => handleAddToCart()} className="add-to-cart"><img src={AddShoppingCart} /></button>
         </div>
     )
 }

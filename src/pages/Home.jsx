@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
+
+// Components
 import Categories from "../components/categories.jsx";
 import ProductCard from "../components/productCard.jsx";
+import CustomHeader from "../components/customHeader.jsx";
+
 import { listProducts } from "../lib/appwrite.js";
 import "../styles/Home.css";
 
@@ -22,6 +26,7 @@ function Home() {
 
     return (
         <>
+            <CustomHeader />
             <Categories />
             <main>
                 <section className="products-grid">

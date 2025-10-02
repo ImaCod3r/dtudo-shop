@@ -22,7 +22,7 @@
 .products-grid {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 10px;
   justify-content: center;
 
@@ -39,7 +39,7 @@
   justify-content: space-between;
   background: #fff;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(29, 92, 238, 0.12);
+  box-shadow: 0 4px 10px rgba(29, 92, 238, 0.12);
   transition: box-shadow 0.3s ease;
   margin: 0 auto; /* centraliza o card */
 }
@@ -79,21 +79,4 @@
 
 .product-card .info {
   width: 100%;
-}
-
-.product-card .add-to-cart {
-    color: #000;
-    background: none;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    align-self: flex-end;
-    gap: 10px;
-
-    width: 50px;
-}
-
-.add-to-cart:hover, .add-to-cart img  {
-  opacity: .8;
 }

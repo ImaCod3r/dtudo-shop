@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import CustomHeader from "./components/customHeader.jsx";
 import Home from "./pages/Home.jsx";
 import Cart from "./pages/Cart.jsx";
 import ProtectedRoute from "./auth/ProtectedRoute.jsx";
@@ -10,9 +9,6 @@ import Product from "./pages/Product.jsx";
 function App() {
 
   return (
-    <>
-      <CustomHeader />
-      <div className="container">
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -26,8 +22,6 @@ function App() {
             <Route path="/produto/:slug" element={<Product />} />
           </Routes>
         </BrowserRouter>
-      </div>
-    </>
   )
 }
 
