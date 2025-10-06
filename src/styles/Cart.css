@@ -1,100 +1,175 @@
-main {
-    width: 80%;
-    margin: 32px auto;
+.cart-container {
+    width: 480px;
+    height: 90vh;
+    margin: 50px auto;
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    font-family: "Inter", sans-serif;
+
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "header"
+        "items"
+        "summary";
+    gap: 20px;
 }
 
+/* Header */
 .cart-header {
+    grid-area: header;
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin-bottom: 32px;
-
-    h1 {
-        font-size: 18px;
-    }
-
-    .back {
-        position: absolute;
-        left: 10%;
-        background: none;
-        border: none;
-        padding: 0;
-        cursor: pointer;
-    }
+    justify-content: flex-start;
 }
 
-.products-list {
+/* Itens roláveis */
+.cart-items {
+    grid-area: items;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+.cart-items::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cart-items::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.empty-cart {
+    height: 100%;
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    align-items: center;
+    justify-content: center;
 }
 
-.product-item {
-    width: 100%;
+/* Item */
+.cart-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 15px;
+    margin-bottom: 20px;
 }
 
-.info-wrapper {
+.item-info {
     display: flex;
-    gap: 15px;
+    align-items: center;
+    gap: 12px;
 }
 
-.image-wrapper {
-    background-color: #fff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
-
-    height: 100px;
-    width: 150px;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.image-wrapper img {
-    width: 100%;
-    height: 100%;
+.item-info img {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
     object-fit: cover;
 }
 
-.controls {
-    margin-top: 10px;
+.item-details h4 {
+    font-size: 15px;
+    margin: 0;
+    font-weight: 600;
+    color: #222;
+}
+
+.item-details p {
+    font-size: 13px;
+    margin: 2px 0;
+    color: #888;
+}
+
+.item-details span {
+    font-weight: 600;
+    color: #111;
+}
+
+.item-quantity {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.controls button {
-    padding: 10px;
-    max-width: 30px;
-}
-
-.controls span {
-    border: 1px solid #000;
-    border-radius: 10px;
-    padding: 10px;
-}
-
-.product-item>button {
-    background-color: red;
-    padding: 10px;
-    max-width: 30px;
-    max-height: 30px;
-
+.item-quantity button {
+    background: #f5f5f5;
+    border: none;
+    border-radius: 8px;
+    width: 28px;
+    height: 28px;
+    font-size: 18px;
+    cursor: pointer;
+    color: #444;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: background 0.2s;
 }
 
-.total {
-    margin: 32px 0;
+.item-quantity button:hover {
+    background: #e0e0e0;
+}
+
+/* Summary fixo */
+.cart-summary {
+    grid-area: summary;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    background: #fff;
+    position: sticky;
+    bottom: 0;
+}
+
+.summary-row,
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+    font-size: 14px;
+    color: #444;
+}
+
+.summary-total {
+    font-weight: 700;
+    font-size: 16px;
+    color: #111;
+    margin-top: 10px;
+}
+
+.checkout-btn {
     width: 100%;
-    border: 1px solid #c6c6c6;
+    padding: 20px;
+    border: none;
     border-radius: 12px;
-    padding: 16px;
+    background: var(--primary-color);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 18px;
+    cursor: pointer;
+    transition: 0.2s ease;
 }
 
-.total button {
-    margin-top: 15px;
+.checkout-btn:hover {
+    opacity: 0.9;
+}
+
+/* Responsivo */
+@media (max-width: 500px) {
+    .cart-container {
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 15px;
+
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas:
+            "header"
+            "items"
+            "summary";
+    }
 }

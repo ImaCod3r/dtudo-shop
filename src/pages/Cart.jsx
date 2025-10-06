@@ -1,61 +1,69 @@
-import { useState, useEffect } from "react";
+import React, { useMemo } from "react";
+import "../styles/Cart.css";
 import { useCart } from "../hooks/useCart";
 import { formatPriceAOA } from "../utils";
-import "../styles/Cart.css";
-
 import Back from "../components/backButton.jsx";
 
-export default function Cart() {
-    const { cart, increase, decrease, remove, clear } = useCart();
-    const [total, setTotal] = useState(0);
+const Cart = () => {
+    const { cart, increase, decrease, remove } = useCart();
 
-    const calculateTotal = (items) => {
-        let result = 0;
-        items.forEach((item) => {
-            result += item.price * item.quantity;
-        });
-        setTotal(result);
-    }
+    const subtotal = useMemo(
+        () => cart.reduce((acc, item) => acc + item.price * item.quantity, 0),
+        [cart]
+    );
 
-    useEffect(()=> {
-        calculateTotal(cart);   
-    })
+    const total = subtotal;
 
     return (
-        <main>
+        <div className="cart-container">
             <div className="cart-header">
                 <Back />
-                <h1>Carrinho de Compras</h1>
             </div>
-            <div className="total">
-                <span>Total</span>
-                <h2>{formatPriceAOA(total)}</h2>
 
-                <button>Finalizar Compra</button>
-            </div>
-            <div className="products-list">
-                {cart && cart.map((item, idx) => (
-                    <div className="product-item" key={idx}>
-                        <div className="info-wrapper">
-                            <div className="image-wrapper">
-                                <img src={item.image_url} />
-                            </div>
-                            <div className="info">
-                                <h3>{item.name}</h3>
-                                <p>{formatPriceAOA(item.price)}</p>
-
-                                <div className="controls">
-                                    <button onClick={() => increase(item)}>+</button>
-                                    <span>{item.quantity}</span>
-                                    <button onClick={() => decrease(item)}>-</button>
+            <div className="cart-items">
+                {cart.length === 0 ? (
+                    <div className="empty-cart">
+                        <p>
+                            O seu carrinho está vazio 😕
+                        </p>
+                    </div>
+                ) : (
+                    cart.map((item) => (
+                        <div className="cart-item" key={item.id}>
+                            <div className="item-info">
+                                <img src={item.image_url} alt={item.name} />
+                                <div className="item-details">
+                                    <h4>{item.name}</h4>
+                                    <p>{item.category}</p>
+                                    <span>{formatPriceAOA(item.price)}</span>
                                 </div>
                             </div>
+                            <div className="item-quantity">
+                                <button onClick={() => decrease(item)}>-</button>
+                                <span>{item.quantity}</span>
+                                <button onClick={() => increase(item)}>+</button>
+                                <button className="remove-btn" onClick={() => remove(item)}>
+                                    ✕
+                                </button>
+                            </div>
                         </div>
-
-                        <button onClick={() => remove(item)}>x</button>
-                    </div>
-                ))}
+                    ))
+                )}
             </div>
-        </main>
-    )
-}
+
+            <div className="cart-summary">
+                <div className="summary-row">
+                    <span>Subtotal</span>
+                    <span>{formatPriceAOA(subtotal)}</span>
+                </div>
+                <div className="summary-total">
+                    <span>Total</span>
+                    <span>{formatPriceAOA(total)}</span>
+                </div>
+                <button className="checkout-btn">Finalizar compra</button>
+            </div>
+        </div>
+    );
+};
+
+export default Cart;
