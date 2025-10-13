@@ -12,6 +12,19 @@ const Cart = () => {
         [cart]
     );
 
+    const OrderWhatsapp = (cart) => {
+        let message = "Olá, gostaria de fazer o seguinte pedido:\n\n";
+        cart.forEach((item) => {
+            message += `- ${item.quantity} x ${item.name} (${formatPriceAOA(item.price * item.quantity)})\n`;
+        });
+        message += `\nTotal: ${formatPriceAOA(subtotal)}\n\nObrigado!`;
+
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/244929087734?text=${encodedMessage}`;
+
+        window.open(whatsappUrl, "_blank"); 
+    }
+
     const total = subtotal;
 
     return (
@@ -60,7 +73,7 @@ const Cart = () => {
                     <span>Total</span>
                     <span>{formatPriceAOA(total)}</span>
                 </div>
-                <button className="checkout-btn">Finalizar compra</button>
+                <button className="checkout-btn" onClick={() => OrderWhatsapp(cart)}>Finalizar compra</button>
             </div>
         </div>
     );
