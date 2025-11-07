@@ -5,6 +5,7 @@ import Categories from "../components/categories.jsx";
 import ProductCard from "../components/productCard.jsx";
 import CustomHeader from "../components/customHeader.jsx";
 import CustomFooter from "../components/customFooter.jsx";
+import Spinner from "../components/loadingSpinner.jsx";
 
 import { listProducts } from "../lib/appwrite.js";
 import "../styles/Home.css";
@@ -12,8 +13,11 @@ import "../styles/Home.css";
 function Home() {
     const [products, setProducts] = useState([])
     const [category, setCategory] = useState("Todos")
+    const [loading, setLoading] = useState(false);
+
     const handleFetchProducts = async () => {
         try {
+            setLoading(true)
             const data = await listProducts();
             if(category !== "Todos") {
                 const filtered = data.filter(item => item.category === category)
@@ -21,6 +25,7 @@ function Home() {
             } else {
                 setProducts(data);
             }
+            setLoading(false);
         } catch {
             alert("Erro ao listar produtos.");
         }
