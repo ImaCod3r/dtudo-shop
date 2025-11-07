@@ -6,16 +6,16 @@ main {
 
 .categories {
   overflow-y: scroll;
-  margin-top: 10px;
   display: flex;
-  margin: 10px;
+  margin: 10px 0;
   gap: 5px;
 }
 
 .categories>button {
   background-color: #f1f1f1;
   color: #121212;
-
+  border: none;
+  padding: 10px;
 }
 
 .categories>button:hover {

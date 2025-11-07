@@ -45,7 +45,7 @@ export default function Product() {
                                 <p>{product.description}</p>
                             </div>
 
-                            <button onClick={() => add(product)}>Adicionar ao carrinho</button>
+                            <button className="default-button" onClick={() => add(product)}>Adicionar ao carrinho</button>
                         </div>
                     </div>
                 )}

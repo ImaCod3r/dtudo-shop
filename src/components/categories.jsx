@@ -1,13 +1,11 @@
 import { categories } from "../constants";
-import { useState } from "react";
 
-const Categories = () => {
-
+const Categories = ({ onSelect }) => {
     return (
         <>
             <div className="categories">
                 {categories.map((category, idx) => (
-                    <button key={idx}>{category}</button>
+                    <button key={idx} onClick={() => onSelect(category)}>{category}</button>
                 ))}
             </div>
         </>

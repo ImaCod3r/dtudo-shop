@@ -15,17 +15,35 @@
 }
 
 .back {
-    width: 20px;
-    padding: 0;
-    background-color: transparent;
-    border: none;
+  width: 20px;
+  padding: 0;
+  background-color: transparent;
+  border: none;
 }
 
 .back:hover {
-    background: none;
+  background: none;
 }
 
-h1, h2, h3 {
+.default-button {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  background: #007bff;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.default-button:hover {
+  background: #0056b3;
+}
+
+h1,
+h2,
+h3 {
   font-family: var(--primary-font);
 }
 
@@ -94,6 +112,7 @@ footer {
 
   border-top: 1px solid var(--gray);
 }
+
 
 footer img {
   width: 100px;
