@@ -6,9 +6,11 @@
     footer {
         max-height: 200px;
         width: 100%;
+
         background-color: var(--white);
         text-align: center;
         padding: 16px 0;
+
         margin-top: 32px;
         font-size: 0.9rem;
         color: #666;
@@ -25,8 +27,9 @@
 
 .product {
     display: flex;
+    align-items: center;
     gap: 20px;
-    height: 100vh;
+
     img {
         width: 30%;
         object-fit: contain;
