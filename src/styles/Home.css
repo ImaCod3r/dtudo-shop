@@ -15,6 +15,7 @@ main {
   background-color: #f1f1f1;
   color: #121212;
   border: none;
+  border-radius: 12px;
   padding: 10px;
 }
 
@@ -22,8 +23,9 @@ main {
   background: none;
 }
 
-.categories>button.selected {
-  color: #c1c1c1;
+.categories>button.active {
+  background-color: #0A8FFE;
+  color: #fff;
 }
 
 .products-grid {
