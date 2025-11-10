@@ -14,6 +14,14 @@
   --gray: #f0f0f5;
 }
 
+button:disabled {
+  opacity: .5;
+}
+
+button:disabled:hover {
+  opacity: .5;
+}
+
 .back {
   width: 20px;
   padding: 0;
@@ -112,7 +120,6 @@ footer {
 
   border-top: 1px solid var(--gray);
 }
-
 
 footer img {
   width: 100px;

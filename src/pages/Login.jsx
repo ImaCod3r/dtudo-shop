@@ -11,7 +11,7 @@ export default function LoginForm() {
     account.createEmailPasswordSession({ email, password })
       .then(response => {
         console.log("Login successful:", response);
-        window.location.href = "/admin/new"; // Redirect to admin page on success
+        window.location.href = "/admin/"; // Redirect to admin page on success
       })
       .catch(error => {
         console.error("Login failed:", error);

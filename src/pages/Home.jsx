@@ -19,7 +19,7 @@ function Home() {
         try {
             setLoading(true)
             const data = await listProducts();
-            if(category !== "Todos") {
+            if (category !== "Todos") {
                 const filtered = data.filter(item => item.category === category)
                 setProducts(filtered);
             } else {
@@ -39,22 +39,31 @@ function Home() {
         <>
             <CustomHeader />
             <main>
-                <Categories onSelect={setCategory}/>
+                <Categories onSelect={setCategory} />
                 <hr color="#f1f1f1" />
-                <section className="products-grid">
-                    {products.map((item) => (
-                        <ProductCard name={item.name} key={item.$id} id={item.$id} slug={item.slug} price={item.price} image_url={item.image_url} />
-                    ))}
-                </section>
 
-                <section>
-                    <h2>Populares</h2>
-                    <div className="products-grid">
-                        {products.map((item) => (
-                            <ProductCard name={item.name} key={item.$id} id={item.$id} slug={item.slug} price={item.price} image_url={item.image_url} />
-                        ))}
-                    </div>
-                </section>
+                {loading ? (
+                    <div className="spinner-area">
+                        <Spinner />
+                    </div>) :
+                    (
+                        <>
+                            <section className="products-grid">
+                                {products.map((item) => (
+                                    <ProductCard name={item.name} key={item.$id} id={item.$id} slug={item.slug} price={item.price} image_url={item.image_url} />
+                                ))}
+                            </section>
+
+                            <section>
+                                <h2>Populares</h2>
+                                <div className="products-grid">
+                                    {products.map((item) => (
+                                        <ProductCard name={item.name} key={item.$id} id={item.$id} slug={item.slug} price={item.price} image_url={item.image_url} />
+                                    ))}
+                                </div>
+                            </section>
+                        </>
+                    )}
             </main>
             <CustomFooter />
         </>

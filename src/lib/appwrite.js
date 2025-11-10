@@ -41,4 +41,13 @@ const getProductBySlug = async (slug) => {
   return response.rows || [];
 }
 
+const UpdateProduct = async (row_id, newProduct) => {
+  const response = await table.updateRow({
+    databaseId: database_id,
+    tableId: table_id,
+    rowId: row_id, data: {
+      
+    } });
+}
+
 export { account, handleProductSaving, listProducts, getProductBySlug };

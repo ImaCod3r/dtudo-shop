@@ -38,6 +38,16 @@ function Admin() {
         setModalState(false)
     }
 
+    // async function handleEditProduct(id) {
+    //     const data = await fetchProducts();
+    //     const filtered = data?.filter(item => item.$id === id)[0];
+    //     console.log(filtered)
+
+    //     setForm(filtered);
+
+    //     setModalState(true);
+    // }
+
     useEffect(() => {
         fetchProducts();
     }, []);
@@ -45,7 +55,7 @@ function Admin() {
     return (
         <>
             <div className="btn-wrapper">
-                <button onClick={() => setModalState(true)} className="new-product">Novo Produto</button>
+                <button onClick={() => setModalState(true)} className="new-product default-button">Novo Produto</button>
             </div>
             <Modal isOpen={ModalState} onClose={() => setModalState(false)}>
                 <form onSubmit={handleSubmit}>
@@ -113,7 +123,7 @@ function Admin() {
                             required
                         />
                     </div>
-                    <button type="submit">Salvar</button>
+                    <button className="default-button" type="submit">Salvar</button>
                 </form>
             </Modal>
 
@@ -137,8 +147,8 @@ function Admin() {
                             <td>{item.category}</td>
                             <td>{formatPriceAOA(item.price)}</td>
                             <td>
-                                <button>Editar</button>
-                                <button>Excluir</button>
+                                <button disabled>Editar</button>
+                                <button disabled>Excluir</button>
                             </td>
                         </tr>
                     ))}

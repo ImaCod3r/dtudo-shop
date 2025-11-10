@@ -7,17 +7,14 @@
 
 .spinner-border {
   box-sizing: border-box;
+  border-style: solid;
   border-radius: 50%;
   animation: spinner-rotate 1s linear infinite;
 }
 
 @keyframes spinner-rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .spinner-dots {
@@ -25,7 +22,6 @@
   gap: 8px;
   align-items: center;
   justify-content: center;
-  animation: none;
 }
 
 .spinner-dots .dot {

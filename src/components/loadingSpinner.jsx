@@ -1,9 +1,10 @@
+// Spinner.jsx
 import "../styles/LoadingSpinner.css";
 
 export default function Spinner({
   size = 48,
   thickness = 4,
-  color = "blue",
+  color = "#000",
   variant = "border",
   label = "Carregando..."
 }) {
@@ -14,6 +15,7 @@ export default function Spinner({
 
   const borderStyle = {
     borderWidth: `${thickness}px`,
+    borderStyle: "solid",
     borderColor: `${color} transparent ${color} transparent`
   };
 
@@ -34,7 +36,6 @@ export default function Spinner({
           <div className="dot" style={dotStyle} />
         </div>
       )}
-
       <span className="visually-hidden">{label}</span>
     </div>
   );
