@@ -1,9 +1,8 @@
-import { Client, Account, Storage, ID, TablesDB, Query } from "appwrite";
+import { Client, Account, ID, TablesDB, Query, Permission, Role } from "appwrite";
 import { createSlug } from "../utils";
 
 const endpoint = import.meta.env.VITE_APPWRITE_ENDPOINT;
 const project_id = import.meta.env.VITE_APPWRITE_PROJECT_ID;
-const bucket_id = import.meta.env.VITE_APPWRITE_BUCKET_ID;
 const database_id = import.meta.env.VITE_APPWRITE_DATABASE_ID;
 const table_id = import.meta.env.VITE_APPWRITE_TABLE_ID;
 
@@ -12,7 +11,6 @@ const client = new Client()
   .setProject(project_id);
 
 const account = new Account(client);
-const storage = new Storage(client);
 const table = new TablesDB(client);
 
 const saveProduct = async (form) => {
@@ -22,7 +20,7 @@ const saveProduct = async (form) => {
     rowId: ID.unique(),
     data: {
       name: form.name,
-      price: +form.price,
+      price: form.price,
       description: form.description,
       category: form.category,
       slug: createSlug(form.name),
@@ -49,7 +47,10 @@ const updateProduct = async (row_id, newProduct) => {
   await table.updateRow({
     databaseId: database_id,
     tableId: table_id,
-    rowId: row_id, data: newProduct
+    rowId: row_id, data: newProduct,
+    permissions: [
+      Permission.update(Role.users())
+    ]
   });
 }
 

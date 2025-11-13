@@ -1,19 +1,21 @@
 import { useState, useEffect } from "react";
 import "../styles/Admin.css";
 import { categories } from "../constants";
-import { saveProduct, listProducts, deleteProduct } from "../lib/appwrite";
+import { saveProduct, listProducts, deleteProduct, updateProduct } from "../lib/appwrite";
 import Modal from "../components/modal.jsx";
 import { formatPriceAOA } from "../utils/index.js";
 
 function Admin() {
     const [ModalState, setModalState] = useState(false);
     const [products, setProducts] = useState([]);
+    const [formMode, setFormMode] = useState("save");
+    const [target, setTarget] = useState({});
 
     const [form, setForm] = useState({
         name: '',
         image_url: '',
         category: '',
-        price: '',
+        price: 0,
         description: '',
         slug: ''
     });
@@ -32,32 +34,54 @@ function Admin() {
         setForm(f => ({ ...f, [name]: value }));
     }
 
-    function handleSave(form) {
-        saveProduct(form);
-        setModalState(false)
+    async function handleSave() {
+        try {
+            await saveProduct(form);
+
+            setModalState(false);
+            alert("Produto salvo com sucesso!");
+            fetchProducts();
+        } catch (error) {
+            alert("Não foi possível salvar o produto!");
+            console.error(error);
+        }
     }
 
     async function handleDelete(item) {
         try {
-            if(!confirm("Tem a certeza que deseja deletar este produto?")) return;
+            if (!confirm("Tem a certeza que deseja deletar este produto?")) return;
             await deleteProduct(item.$id);
             alert(`${item.name} deletado com sucesso!`);
             fetchProducts();
-        } catch(error) {
+        } catch (error) {
             alert("Não foi possível deletar o produto!");
             console.error(error);
         }
     }
 
-    // async function handleEditProduct(id) {
-    //     const data = await fetchProducts();
-    //     const filtered = data?.filter(item => item.$id === id)[0];
-    //     console.log(filtered)
+    async function handleEdit(item) {
+        try {
+            await updateProduct(item.$id, form);
+            alert("Produto atualizado com sucesso!");
+            setModalState(false);
+            fetchProducts();
+        } catch (error) {
+            alert("Não foi possível atualizar o produto.");
+            console.error(error);
+        }
+    }
 
-    //     setForm(filtered);
-
-    //     setModalState(true);
-    // }
+    function handleFormSubmit(e) {
+        e.preventDefault();
+        switch (formMode) {
+            case "save":
+                handleSave();
+                break;
+            case "edit":
+                handleEdit(target);
+                break;
+        }
+    }
 
     useEffect(() => {
         fetchProducts();
@@ -69,7 +93,7 @@ function Admin() {
                 <button onClick={() => setModalState(true)} className="new-product default-button">Novo Produto</button>
             </div>
             <Modal isOpen={ModalState} onClose={() => setModalState(false)}>
-                <form onSubmit={handleSave}>
+                <form onSubmit={(e) => handleFormSubmit(e)}>
                     <div className="form-group">
                         <label>
                             Nome
@@ -117,10 +141,9 @@ function Admin() {
                             type="number"
                             name="price"
                             value={form.price}
-                            onChange={handleChange}
+                            onChange={(e) => setForm(f => ({ ...f, price: parseInt(e.target.value, 10) || 0 }))}
                             required
                             min="0"
-                            step="0.01"
                         />
                     </div>
                     <div className="form-group">
@@ -134,7 +157,7 @@ function Admin() {
                             required
                         />
                     </div>
-                    <button className="default-button" onClick={() => handleSave(form)}>Salvar</button>
+                    <button type="submit" className="default-button">Salvar</button>
                 </form>
             </Modal>
 
@@ -158,7 +181,12 @@ function Admin() {
                             <td>{item.category}</td>
                             <td>{formatPriceAOA(item.price)}</td>
                             <td>
-                                <button>Editar</button>
+                                <button onClick={() => {
+                                    setForm(item);
+                                    setFormMode("edit");
+                                    setTarget(item);
+                                    setModalState(true);
+                                }}>Editar</button>
                                 <button onClick={() => handleDelete(item)}>Excluir</button>
                             </td>
                         </tr>
