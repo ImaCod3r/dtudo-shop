@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "../styles/Admin.css";
 import { categories } from "../constants";
-import { handleProductSaving, listProducts } from "../lib/appwrite";
+import { saveProduct, listProducts, deleteProduct } from "../lib/appwrite";
 import Modal from "../components/modal.jsx";
 import { formatPriceAOA } from "../utils/index.js";
 
@@ -32,10 +32,21 @@ function Admin() {
         setForm(f => ({ ...f, [name]: value }));
     }
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        handleProductSaving(form);
+    function handleSave(form) {
+        saveProduct(form);
         setModalState(false)
+    }
+
+    async function handleDelete(item) {
+        try {
+            if(!confirm("Tem a certeza que deseja deletar este produto?")) return;
+            await deleteProduct(item.$id);
+            alert(`${item.name} deletado com sucesso!`);
+            fetchProducts();
+        } catch(error) {
+            alert("Não foi possível deletar o produto!");
+            console.error(error);
+        }
     }
 
     // async function handleEditProduct(id) {
@@ -58,7 +69,7 @@ function Admin() {
                 <button onClick={() => setModalState(true)} className="new-product default-button">Novo Produto</button>
             </div>
             <Modal isOpen={ModalState} onClose={() => setModalState(false)}>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSave}>
                     <div className="form-group">
                         <label>
                             Nome
@@ -123,7 +134,7 @@ function Admin() {
                             required
                         />
                     </div>
-                    <button className="default-button" type="submit">Salvar</button>
+                    <button className="default-button" onClick={() => handleSave(form)}>Salvar</button>
                 </form>
             </Modal>
 
@@ -147,8 +158,8 @@ function Admin() {
                             <td>{item.category}</td>
                             <td>{formatPriceAOA(item.price)}</td>
                             <td>
-                                <button disabled>Editar</button>
-                                <button disabled>Excluir</button>
+                                <button>Editar</button>
+                                <button onClick={() => handleDelete(item)}>Excluir</button>
                             </td>
                         </tr>
                     ))}

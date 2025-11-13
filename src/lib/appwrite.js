@@ -15,7 +15,7 @@ const account = new Account(client);
 const storage = new Storage(client);
 const table = new TablesDB(client);
 
-const handleProductSaving = async (form) => {
+const saveProduct = async (form) => {
   await table.createRow({
     databaseId: database_id,
     tableId: table_id,
@@ -36,18 +36,21 @@ const listProducts = async () => {
   return response.rows || [];
 }
 
+const deleteProduct = async (id) => {
+  await table.deleteRow({ databaseId: database_id, tableId: table_id, rowId: id });
+}
+
 const getProductBySlug = async (slug) => {
-  const response = await table.listRows({databaseId: database_id, tableId: table_id, queries: [Query.equal("slug", slug)] })
+  const response = await table.listRows({ databaseId: database_id, tableId: table_id, queries: [Query.equal("slug", slug)] })
   return response.rows || [];
 }
 
-const UpdateProduct = async (row_id, newProduct) => {
-  const response = await table.updateRow({
+const updateProduct = async (row_id, newProduct) => {
+  await table.updateRow({
     databaseId: database_id,
     tableId: table_id,
-    rowId: row_id, data: {
-      
-    } });
+    rowId: row_id, data: newProduct
+  });
 }
 
-export { account, handleProductSaving, listProducts, getProductBySlug };
+export { account, saveProduct, listProducts, getProductBySlug, updateProduct, deleteProduct };
